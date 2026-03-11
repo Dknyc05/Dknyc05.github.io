@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Itz DK Playz — Gaming Channel</title>
+  <meta name="description" content="Official website of Itz DK Playz — Gaming videos, highlights, and more." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<!-- Page Transition -->
+<div class="page-transition" id="page-transition"></div>
+
+<!-- Video Modal -->
+<div id="video-modal" class="video-modal" onclick="if(event.target===this)closeVideoModal()">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeVideoModal()">✕</button>
+    <iframe id="modal-iframe" src="" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">ITZ DK PLAYZ</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://www.youtube.com/@Itz_DkPlayz?sub_confirmation=1" target="_blank" class="nav-cta">Subscribe</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="hero-particles"></canvas>
+  <div class="hero-bg-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow animate-up"><span class="tag">🎮 Gaming Channel</span></div>
+    <h1 class="hero-title animate-up" style="animation-delay:0.1s">
+      <span class="glitch-wrapper">
+        <span class="hero-name" data-glitch="200">ITZ DK PLAYZ</span>
+      </span>
+      <br>
+      <span class="hero-sub-title">Level Up Your Feed</span>
+    </h1>
+    <p class="hero-desc animate-up" style="animation-delay:0.2s">
+      Epic gaming content, crazy highlights, and non-stop entertainment.<br>
+      Hit subscribe and join the DK Army!
+    </p>
+    <div class="hero-actions animate-up" style="animation-delay:0.3s">
+      <a href="https://www.youtube.com/@Itz_DkPlayz?sub_confirmation=1" target="_blank" class="btn btn-fire">
+        ▶&nbsp; Subscribe Now
+      </a>
+      <a href="videos.html" class="btn btn-outline">Watch Videos</a>
+    </div>
+    <div class="hero-scroll-hint animate-up" style="animation-delay:0.5s">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </div>
+  <div class="hero-decoration">
+    <div class="hero-ring hero-ring-1"></div>
+    <div class="hero-ring hero-ring-2"></div>
+    <div class="hero-ring hero-ring-3"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-number" id="live-subs" data-count="1200">1.2K</span>
+    <span class="stat-label"><span class="stat-live-dot"></span>Subscribers</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number" id="live-views" data-count="85000">85K</span>
+    <span class="stat-label">Total Views</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number" id="live-videos" data-count="47">47</span>
+    <span class="stat-label">Videos</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">2024</span>
+    <span class="stat-label">Since</span>
+  </div>
+</div>
+
+<!-- FEATURED VIDEOS -->
+<section class="section-pad">
+  <p class="section-subtitle">— HOT RIGHT NOW —</p>
+  <h2 class="section-title">Featured <span>Videos</span></h2>
+  <div class="glow-line"></div>
+
+  <div class="videos-grid" style="margin-top:2.5rem">
+
+    <div class="card video-card animate-up" onclick="openVideoModal('dQw4w9WgXcQ')">
+      <div class="thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+             onerror="this.src='https://placehold.co/640x360/0d0d14/ff1744?text=DK+PLAYZ'"
+             alt="Video Thumbnail" loading="lazy" />
+        <div class="play-btn"><div class="play-icon">▶</div></div>
+        <span class="duration-badge">12:34</span>
+      </div>
+      <div class="video-info">
+        <div class="video-title">🔥 INSANE Gameplay You Won't Believe! #1</div>
+        <div class="video-meta"><span>24K views</span><span>2 days ago</span></div>
+      </div>
+    </div>
+
+    <div class="card video-card animate-up" onclick="openVideoModal('dQw4w9WgXcQ')">
+      <div class="thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+             onerror="this.src='https://placehold.co/640x360/0d0d14/ff6d00?text=DK+PLAYZ'"
+             alt="Video Thumbnail" loading="lazy" />
+        <div class="play-btn"><div class="play-icon">▶</div></div>
+        <span class="duration-badge">8:12</span>
+      </div>
+      <div class="video-info">
+        <div class="video-title">I Got The RAREST Item in the Game!! (Not Clickbait)</div>
+        <div class="video-meta"><span>18K views</span><span>5 days ago</span></div>
+      </div>
+    </div>
+
+    <div class="card video-card animate-up" onclick="openVideoModal('dQw4w9WgXcQ')">
+      <div class="thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+             onerror="this.src='https://placehold.co/640x360/0d0d14/ffd600?text=DK+PLAYZ'"
+             alt="Video Thumbnail" loading="lazy" />
+        <div class="play-btn"><div class="play-icon">▶</div></div>
+        <span class="duration-badge">15:02</span>
+      </div>
+      <div class="video-info">
+        <div class="video-title">I Challenged My Friends & They Got DESTROYED 💀</div>
+        <div class="video-meta"><span>11K views</span><span>1 week ago</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; margin-top:2.5rem">
+    <a href="videos.html" class="btn btn-outline">View All Videos →</a>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section class="about-strip section-pad">
+  <div class="about-strip-inner">
+    <div class="about-strip-text animate-up">
+      <span class="tag">About the Creator</span>
+      <h2 style="font-family:'Orbitron',sans-serif; font-size:clamp(1.4rem,3vw,2rem); margin:1rem 0; font-weight:700">
+        Who Is <span style="background:var(--gradient-fire);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">DK?</span>
+      </h2>
+      <p style="color:var(--text-muted); line-height:1.8; max-width:500px">
+        I'm DK — a gamer, content creator, and all-around entertainer. I drop gaming videos packed
+        with energy, funny moments, and clutch plays. Whether it's competitive matches or just 
+        vibing with the community, there's always something going on the channel!
+      </p>
+      <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap">
+        <a href="about.html" class="btn btn-fire">My Story</a>
+        <a href="https://www.youtube.com/@Itz_DkPlayz" target="_blank" class="btn btn-outline">YouTube →</a>
+      </div>
+    </div>
+    <div class="about-strip-visual animate-up">
+      <div class="dk-avatar-box">
+        <div class="dk-avatar-glow"></div>
+        <div class="dk-avatar-inner">
+          <span style="font-size:5rem">🎮</span>
+          <div style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:700; margin-top:0.5rem; letter-spacing:2px">DK PLAYZ</div>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.3rem">Gaming Creator</div>
+        </div>
+        <div class="avatar-badge">NEW VIDEO ↗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST UPLOAD BANNER -->
+<section class="latest-banner animate-up">
+  <div class="latest-banner-inner">
+    <div class="latest-label">🔴 LATEST UPLOAD</div>
+    <div class="latest-title">Check Out My Newest Video!</div>
+    <a href="videos.html" class="btn btn-fire" style="margin-top:1rem">Watch Now ▶</a>
+  </div>
+</section>
+
+<!-- COMMUNITY / SUBSCRIBE CTA -->
+<section class="section-pad cta-section">
+  <div class="cta-inner animate-up">
+    <div class="cta-glow"></div>
+    <span class="tag" style="margin-bottom:1rem;display:inline-block">Join the Community</span>
+    <h2 class="section-title">Be Part of the <span>DK Army</span></h2>
+    <p style="color:var(--text-muted); margin:1rem auto 2rem; max-width:500px; line-height:1.7">
+      Subscribe for epic gaming content, updates, and to be part of one of the fastest-growing gaming communities!
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+      <a href="https://www.youtube.com/@Itz_DkPlayz?sub_confirmation=1" target="_blank" class="btn btn-fire" style="font-size:1.1rem; padding:14px 36px">
+        ▶ Subscribe on YouTube
+      </a>
+    </div>
+    <div style="margin-top:2rem; color:var(--text-muted); font-size:0.85rem">
+      <span id="cta-subs" style="color:var(--neon-yellow); font-family:'Orbitron',sans-serif">1.2K</span> subscribers and counting! 🚀
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">ITZ DK PLAYZ</div>
+      <p class="footer-desc">Gaming content creator bringing you the best clips, highlights, and challenges. Subscribe and join the DK Army!</p>
+      <div class="social-icons">
+        <a href="https://www.youtube.com/@Itz_DkPlayz" target="_blank" class="social-icon" title="YouTube">▶</a>
+        <a href="#" class="social-icon" title="Twitter/X">𝕏</a>
+        <a href="#" class="social-icon" title="Instagram">📸</a>
+        <a href="#" class="social-icon" title="TikTok">🎵</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="footer-heading">Navigation</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="footer-heading">Channel</h4>
+      <ul class="footer-links">
+        <li><a href="https://www.youtube.com/@Itz_DkPlayz" target="_blank">YouTube</a></li>
+        <li><a href="https://www.youtube.com/@Itz_DkPlayz?sub_confirmation=1" target="_blank">Subscribe</a></li>
+        <li><a href="videos.html">Latest Videos</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="footer-heading">More</h4>
+      <ul class="footer-links">
+        <li><a href="contact.html">Collabs</a></li>
+        <li><a href="contact.html">Business</a></li>
+        <li><a href="about.html">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Itz DK Playz. All rights reserved.</span>
+    <span>Made with ❤️ for gaming</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
