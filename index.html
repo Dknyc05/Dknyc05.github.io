@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tatchi Anouan — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --text: #e8e8e8;
+      --muted: #666;
+      --accent: #4fffb0;
+      --accent2: #4fc3f7;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 220px;
+      height: 100vh;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.25rem;
+      z-index: 100;
+    }
+
+    .sidebar-profile {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #000;
+      margin: 0 auto 0.75rem;
+    }
+
+    .sidebar-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .sidebar-role {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-right: 5px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    nav { flex: 1; }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      margin-bottom: 0.2rem;
+    }
+
+    nav a:hover, nav a.active {
+      background: #1a1a1a;
+      color: var(--text);
+    }
+
+    nav a.active { color: var(--accent); }
+
+    nav a .icon { font-size: 1rem; width: 18px; text-align: center; }
+
+    .sidebar-footer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── MAIN ── */
+    main {
+      margin-left: 220px;
+      padding: 0;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 5rem 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    /* ── HERO ── */
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(79,255,176,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-greeting {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-name {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-name span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: #999;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      padding: 0.65rem 1.5rem;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      border: none;
+    }
+
+    .btn-primary:hover { background: #3de89a; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .focus-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+
+    .focus-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .focus-card:hover { border-color: #333; }
+
+    .focus-card .icon { font-size: 1.3rem; margin-bottom: 0.6rem; }
+    .focus-card h4 { font-family: var(--font-head); font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .focus-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── ABOUT ── */
+    #about { display: flex; flex-direction: column; justify-content: center; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: #999;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .about-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .about-card .icon { font-size: 1.4rem; }
+    .about-card h4 { font-family: var(--font-head); font-size: 0.85rem; font-weight: 700; }
+    .about-card p { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── SKILLS ── */
+    #skills { display: flex; flex-direction: column; justify-content: center; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .skill-group h3 {
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .pill {
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.75rem;
+      color: #ccc;
+      transition: all 0.2s;
+    }
+
+    .pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── EXPERIENCE ── */
+    #experience { display: flex; flex-direction: column; justify-content: center; }
+
+    .timeline { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .timeline-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .timeline-item:hover { border-color: #333; }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .timeline-header h3 {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .timeline-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: #1a1a1a;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .timeline-company {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .timeline-item ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline-item ul li {
+      font-size: 0.82rem;
+      color: #999;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+      line-height: 1.6;
+    }
+
+    .timeline-item ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { display: flex; flex-direction: column; justify-content: center; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: #2a2a2a;
+      transform: translateY(-2px);
+    }
+
+    .project-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-icon { font-size: 1.5rem; }
+
+    .project-tag {
+      font-size: 0.68rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .project-card h3 {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card p {
+      font-size: 0.82rem;
+      color: #888;
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    .tech-badge {
+      font-size: 0.68rem;
+      padding: 0.2rem 0.55rem;
+      background: #161616;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--accent2);
+    }
+
+    /* ── CONNECT ── */
+    #connect {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 60vh;
+    }
+
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 600px;
+    }
+
+    .connect-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .connect-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .connect-card .icon { font-size: 1.5rem; }
+    .connect-card span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── MOBILE ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      z-index: 100;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-nav-name {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .mobile-nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .mobile-nav { display: flex; }
+      main { margin-left: 0; }
+      section { padding: 5rem 1.5rem 3rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .focus-cards { grid-template-columns: 1fr; }
+      .connect-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-name { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Nav -->
+<nav class="mobile-nav">
+  <span class="mobile-nav-name">TA</span>
+  <div class="mobile-nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#connect">Connect</a>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-profile">
+    <div class="avatar">TA</div>
+    <div class="sidebar-name">Tatchi Anouan</div>
+    <div class="sidebar-role"><span class="status-dot"></span>Open to internships</div>
+  </div>
+
+  <nav>
+    <a href="#home" class="active"><span class="icon">⌂</span> Home</a>
+    <a href="#about"><span class="icon">◎</span> About</a>
+    <a href="#skills"><span class="icon">◈</span> Skills</a>
+    <a href="#projects"><span class="icon">⬡</span> Projects</a>
+    <a href="#experience"><span class="icon">◷</span> Experience</a>
+    <a href="#connect"><span class="icon">→</span> Connect</a>
+  </nav>
+
+  <div class="sidebar-footer">
+    Purdue University '27<br/>Computer Engineering
+  </div>
+</aside>
+
+<!-- Main -->
+<main>
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-greeting">👋 Hey there</div>
+    <h1 class="hero-name">Tatchi<br/><span>Anouan</span></h1>
+    <p class="hero-sub">Computer Engineer · Embedded Systems · Software</p>
+    <p class="hero-desc">
+      Purdue CE student building at the intersection of hardware and software —
+      from FPGA daughter cards to AI voice assistants. Currently researching
+      high-speed PCB design at Purdue SoCET.
+    </p>
+    <div class="btn-row">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#connect" class="btn btn-outline">Get in Touch</a>
+    </div>
+
+    <div class="focus-cards">
+      <div class="focus-card">
+        <div class="icon">🔬</div>
+        <h4>Currently Building</h4>
+        <p>HSMC Breakout Board 2.0 — USB 3.0, HDMI, and USB-C for FPGA testing at SoCET</p>
+      </div>
+      <div class="focus-card">
+        <div class="icon">📚</div>
+        <h4>Currently Learning</h4>
+        <p>High-speed PCB signal integrity, controlled impedance routing, and RTL verification</p>
+      </div>
+      <div class="focus-card">
+        <div class="icon">🎯</div>
+        <h4>Goals This Year</h4>
+        <p>Land a Summer 2026 internship, ship JARVIS v2, and build out my GitHub portfolio</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a Computer Engineering student at Purdue University (Class of 2027) with minors in
+          Business Economics and Mathematics. I specialize in embedded systems, software engineering,
+          and AI/ML — and I'm passionate about building things that bridge hardware and software.
+        </p>
+        <p>
+          My work ranges from designing PCB daughter cards for FPGA testing at Purdue's SoCET lab,
+          to building a Raspberry Pi voice assistant integrated with IoT devices, to repairing
+          logic boards at the component level during my internship at Secured Tech.
+        </p>
+        <p>
+          Outside engineering, I run a YouTube channel (10K+ subscribers), play Purdue flag
+          football, and serve as PR Chair for Purdue's ECE Ambassadors.
+        </p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="icon">🔧</div>
+          <div>
+            <h4>Hardware Builder</h4>
+            <p>PCB design, FPGA, embedded systems</p>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="icon">💻</div>
+          <div>
+            <h4>Software Developer</h4>
+            <p>Python, C/C++, APIs, full-stack</p>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="icon">🎓</div>
+          <div>
+            <h4>Researcher</h4>
+            <p>Undergraduate researcher @ Purdue SoCET</p>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="icon">🎥</div>
+          <div>
+            <h4>Content Creator</h4>
+            <p>10K+ subscribers · $9K+ annual revenue</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Technical Skills</div>
+    <h2 class="section-title">What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <div class="pills">
+          <span class="pill">Python</span>
+          <span class="pill">Pandas</span>
+          <span class="pill">NumPy</span>
+          <span class="pill">C</span>
+          <span class="pill">C++</span>
+          <span class="pill">MATLAB</span>
+          <span class="pill">Assembly</span>
+          <span class="pill">Verilog</span>
+          <span class="pill">HTML/CSS</span>
+          <span class="pill">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Hardware & Embedded</h3>
+        <div class="pills">
+          <span class="pill">FPGA</span>
+          <span class="pill">KiCAD</span>
+          <span class="pill">PCB Design</span>
+          <span class="pill">Arduino</span>
+          <span class="pill">Raspberry Pi</span>
+          <span class="pill">Soldering</span>
+          <span class="pill">Logic Board Debugging</span>
+          <span class="pill">Microsoldering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Software & Tools</h3>
+        <div class="pills">
+          <span class="pill">Linux</span>
+          <span class="pill">Git/GitHub</span>
+          <span class="pill">Simulink</span>
+          <span class="pill">LTspice</span>
+          <span class="pill">Figma</span>
+          <span class="pill">Microsoft Office</span>
+          <span class="pill">Final Cut Pro</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>APIs & Integrations</h3>
+        <div class="pills">
+          <span class="pill">OpenAI API</span>
+          <span class="pill">Spotify API</span>
+          <span class="pill">Home Assistant</span>
+          <span class="pill">ESPN API</span>
+          <span class="pill">REST APIs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">What I've Built</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">🤖</div>
+          <span class="project-tag">AI · IoT</span>
+        </div>
+        <h3>J.A.R.V.I.S. Voice Assistant</h3>
+        <p>Voice-controlled AI assistant on Raspberry Pi 5, integrated with 5+ IoT devices — LED strips, smart bulbs, sensors — with full desktop automation and real-time conversation via OpenAI.</p>
+        <div class="project-tech">
+          <span class="tech-badge">Raspberry Pi</span>
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">OpenAI API</span>
+          <span class="tech-badge">Home Assistant</span>
+          <span class="tech-badge">Spotify API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">⌚</div>
+          <span class="project-tag">Hardware · PCB</span>
+        </div>
+        <h3>Custom Smart Watch</h3>
+        <p>Prototyped custom smartwatch hardware with PCB design featuring accelerometer, GPS, and OLED display. Built a BLE pipeline to transmit sensor data to a companion mobile app.</p>
+        <div class="project-tech">
+          <span class="tech-badge">PCB Design</span>
+          <span class="tech-badge">BLE</span>
+          <span class="tech-badge">C++</span>
+          <span class="tech-badge">KiCAD</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">🎮</div>
+          <span class="project-tag">Python · API</span>
+        </div>
+        <h3>Football Player Wordle</h3>
+        <p>Wordle-inspired game where players guess NFL player names. Integrated a dataset of 1,500+ players with names, numbers, and positions using the ESPN public API.</p>
+        <div class="project-tech">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">ESPN API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">🌍</div>
+          <span class="project-tag">Web · EPICS</span>
+        </div>
+        <h3>EdTech Africa</h3>
+        <p>Deployed a children's language-learning website supporting 40+ students across 3 schools in Nigeria. Led full-stack development and managed a $200 project budget.</p>
+        <div class="project-tech">
+          <span class="tech-badge">HTML/CSS</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Where I've Worked</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <h3>Undergraduate Researcher</h3>
+          <span class="timeline-date">Jan 2026 – Present</span>
+        </div>
+        <div class="timeline-company">Purdue SoCET — System-on-Chip Extension Technology</div>
+        <ul>
+          <li>Designed HSMC Breakout Board 2.0 daughter card, implementing controlled impedance differential routing (90–100Ω) to enable USB 3.0 (5 Gbps), USB-C, and HDMI connectivity for FPGA-based RTL testing.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <h3>Repair Technician Intern</h3>
+          <span class="timeline-date">May – Aug 2025</span>
+        </div>
+        <div class="timeline-company">Secured Tech Solutions — Fortville, IN</div>
+        <ul>
+          <li>Microsoldered and performed PCB-level diagnostics on iPads, maintaining a ≤3% QC rework rate.</li>
+          <li>Troubleshot logic boards using schematics to isolate shorts, open traces, and component failures.</li>
+          <li>Built an Excel-based asset tracking workflow, cutting manual steps and errors.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <h3>ECE Ambassador PR Chair</h3>
+          <span class="timeline-date">Aug 2025 – Present</span>
+        </div>
+        <div class="timeline-company">Purdue University — ECE Department</div>
+        <ul>
+          <li>Organize recruiting events and lead student and alumni tours representing Purdue's ECE program.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <h3>College of Engineering Summer Mentor</h3>
+          <span class="timeline-date">Jun – Aug 2024</span>
+        </div>
+        <div class="timeline-company">Purdue University</div>
+        <ul>
+          <li>Coordinated with faculty to deliver a summer STEM course, contributing to a 10% improvement in student grades.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; max-width: 420px;">
+      I'm actively looking for Summer 2026 internships in software or embedded engineering. Feel free to reach out.
+    </p>
+    <div class="connect-grid">
+      <a href="mailto:Tanouan@purdue.edu" class="connect-card">
+        <div class="icon">✉️</div>
+        <span>Email</span>
+      </a>
+      <a href="https://linkedin.com/in/tanouan" target="_blank" class="connect-card">
+        <div class="icon">💼</div>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://dknyc05.github.io" target="_blank" class="connect-card">
+        <div class="icon">🐙</div>
+        <span>GitHub</span>
+      </a>
+      <a href="https://youtube.com/@Itz_DkPlayz" target="_blank" class="connect-card">
+        <div class="icon">▶️</div>
+        <span>YouTube</span>
+      </a>
+      <a href="tel:3175038710" class="connect-card">
+        <div class="icon">📱</div>
+        <span>Phone</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.sidebar nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
