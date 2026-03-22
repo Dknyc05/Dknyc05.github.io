@@ -739,23 +739,28 @@
     <!-- HOME -->
     <section id="home">
       <div class="hero-bg"></div>
-      <div style="display: flex; align-items: flex-start; gap: -2rem; margin-bottom: 0.5rem;">
-        <div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem;">
+
+        <!-- Left: text content -->
+        <div style="flex: 1; max-width: 55%;">
           <div class="hero-greeting">👋 Hey there</div>
           <h1 class="hero-name">Tatchi<br /><span>Anouan</span></h1>
+          <p class="hero-sub">Computer Engineer · Embedded Systems · Software</p>
+          <p class="hero-desc">
+            Purdue CE student building at the intersection of hardware and software —
+            from FPGA daughter cards to AI voice assistants. Currently researching
+            high-speed PCB design at Purdue SoCET.
+          </p>
+          <div class="btn-row">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#connect" class="btn btn-outline">Get in Touch</a>
+          </div>
         </div>
+
+        <!-- Right: photo -->
         <img src="IMG_6071.JPEG" alt="Tatchi Anouan"
-          style="width: 380px; height: 475px; object-fit: cover; border-radius: 16px; border: 2px solid #1e1e1e; flex-shrink: 0; margin-top: 2rem;" />
-      </div>
-      <p class="hero-sub">Computer Engineer · Embedded Systems · Software</p>
-      <p class="hero-desc">
-        Purdue CE student building at the intersection of hardware and software —
-        from FPGA daughter cards to AI voice assistants. Currently researching
-        high-speed PCB design at Purdue SoCET.
-      </p>
-      <div class="btn-row">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#connect" class="btn btn-outline">Get in Touch</a>
+          style="width: 34%; max-width: 400px; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px; border: 2px solid #1e1e1e; flex-shrink: 0; margin-top: 1rem; margin-right: 5rem;" />
+
       </div>
 
       <div class="focus-cards">
